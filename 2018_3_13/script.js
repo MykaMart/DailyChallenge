@@ -6,20 +6,29 @@ console.log("Connected")
 
 // For example, given [10, 15, 3, 7] and K of 17, return true since 10 + 7 is 17.
 
-const array = [10, 15, 3, 7]
-const K = 17
 let check = "False"
+let $array
+let $K
 
-if (array.length > 1) {
-	for (let i=0; i < array.length; i++) {
-		for (let n=0; n < array.length; n++) {
-			if (n!==i) {
-				if (array[n] + array[i] === K){
-					check = "True"	
+$("#arrayForm").submit(function (e) {
+	e.preventDefault();
+	$array = $("#arrayInput").val()
+	$array= $array.split(', ').map(Number);
+	$K = parseInt($("#checkNumber").val())
+
+	if ($array.length > 1) {
+		for (let i=0; i < $array.length; i++) {
+			for (let n=0; n < $array.length; n++) {
+
+				if (n!==i) {
+					if ($array[n] + $array[i] === $K){
+						check = "True"	
+					}
 				}
 			}
 		}
 	}
-}
 
-console.log(check)
+	$("#result").text("Check Verified " + check)
+	check = "False"
+})
